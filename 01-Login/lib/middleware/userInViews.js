@@ -6,7 +6,7 @@
  */
 module.exports = function () {
   return function (req, res, next) {
-    res.locals.user = req.user;
+    res.locals.user = req.openid.user;
     next();
   };
 };

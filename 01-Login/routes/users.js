@@ -1,12 +1,11 @@
 const express = require('express');
-const secured = require('../lib/middleware/secured');
+const { requiresAuth } = require('express-openid-connect');
 const router = express.Router();
 
 /* GET user profile. */
-router.get('/user', secured(), function (req, res, next) {
-  const { _raw, _json, ...userProfile } = req.user;
+router.get('/user', requiresAuth(), function (req, res, next) {
   res.render('user', {
-    userProfile: JSON.stringify(userProfile, null, 2),
+    userProfile: JSON.stringify(req.openid.user, null, 2),
     title: 'Profile page'
   });
 });
