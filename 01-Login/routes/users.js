@@ -1,6 +1,6 @@
-var express = require('express');
-var secured = require('../lib/middleware/secured');
-var router = express.Router();
+const express = require('express');
+const secured = require('../lib/middleware/secured');
+const router = express.Router();
 
 /* GET user profile. */
 router.get('/user', secured(), function (req, res, next) {
